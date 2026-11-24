@@ -1,0 +1,21 @@
+[package]
+name = "smooth_launcher_rs"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+opt-level = "z"     # Минимальный размер бинарника и скромное потребление памяти
+lto = true          # Оптимизация всего графа вызовов при линковке
+codegen-units = 1   # Лучшая оптимизация кода компилятором
+strip = true        # Удаление отладочных символов
+panic = "abort"     # Меньше кода раскрутки стека при панике
+
+[dependencies]
+windows-sys = { version = "0.59", features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    "Win32_System_Threading",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+] }
